@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 const Input = () => {
+    // useState for input before we use it to change zipCode
+    const [userInput, setUserInput] = useState("");
     const [zipCode, setZipCode] = useState("");
     const [placeName, setPlaceName] = useState("");
 
