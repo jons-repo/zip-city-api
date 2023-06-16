@@ -7,15 +7,16 @@ const Input = () => {
     const [zipCode, setZipCode] = useState("");
     const [placeName, setPlaceName] = useState("");
 
-    const Button = () => {
-        return <button>Search</button>;
-    }
+    // const Button = () => {
+    //     return ;
+    // }
     
     // 
     useEffect(() => {
         async function getZipCode() {
             try {
-                const placeName = await axios.get(`https://zip-api.eu/api/v1/info/US-${[11371]}`);
+                setZipCode(userInput);
+                const placeName = await axios.get(`https://zip-api.eu/api/v1/info/US-${[zipCode]}`);
                 console.log(placeName);
                 setPlaceName(placeName.data);
                 
@@ -26,9 +27,17 @@ const Input = () => {
         getZipCode();
     }, []);
 
+    /* search() {
+        const userInput = 
+        setUserInput(userInput);
+        setZipCode(userInput);
+    };
+    */
+
     return (
-        <div>
-            <input type="text"/>
+        <div> 
+            <input value={userInput} onInput={e => setUserInput(e.target.value)}/>
+            { /*<button onchange={e => setZipCode(e.target.value)}>Search</button> */}
             {/* Looping through JSON */}
             <p key={placeName.url}>{placeName.place_name}</p>
             {/* {placeName.data.map(placeName => {
